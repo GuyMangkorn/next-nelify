@@ -1,15 +1,8 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  useEffect(() => {
-    console.log('id',id);
-  }, [])
+  const version = 1
 
   return (
     <div className={styles.container}>
@@ -29,6 +22,7 @@ export default function Home() {
         <meta property="og:description" content="Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city" />
         <meta property="og:image" content="https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg" />
       </Head>
+      <div>version {version}</div>
     </div>
   )
 }
