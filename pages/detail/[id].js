@@ -1,25 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import axios from 'axios'
 
-function DetialId() {
-  const router = useRouter()
-  const { id } = router.query;
-  const [project, setProject] = useState([]);
-
-  useEffect(() => {
-    if (id) {
-      (async () => {
-        try {
-          const { data } = await axios.get(`/api/project/${id}`)
-          setProject(data?.data || {})
-        } catch (error) {
-          console.log(error);
-        }
-      })()
-    }
-  }, [id])
+function DetialId(props) {
+  const project = props.project
 
   return (
     <div>
@@ -64,7 +47,7 @@ function DetialId() {
         <meta
           property="og:image"
           content={
-            project.shareimg || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
+            project?.shareimg || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
           }
         />
       </Head>
@@ -73,3 +56,19 @@ function DetialId() {
 }
 
 export default DetialId
+
+export async function getServerSideProps(context) {
+  let requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/project/${context.query.id}`, requestOptions)
+  const body = await response.json()
+  return {
+    props: {
+      project: body.data || {},
+    },
+  };
+}
