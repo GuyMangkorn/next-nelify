@@ -7,7 +7,7 @@ function Detail() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <title>BANGKOK BASTARDS | ABOUT</title>
+        <title>BANGKOK BASTARDS | DETAIL</title>
         <meta name="keywords" content="Bangkok Bastards, Bangkok Bastard, CHAT architects,สถาปัตยกรรมชั้นเลว,, สถาปัตยกรรมที่ไม่น่าพิสมัย,บ้านคนงานก่อสร้าง,สลัม,แผงลอยเป็นสถาปัตยกรรมชั้นต่ำ,บ้านคนงานก่อสร้าง" />
         <meta name="author" content="CHAT architects" />
         <meta name="description" content="Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city." />

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 function DetialId(props) {
+  const navigate = useRouter()
   const project = props.project
+  console.log('project', project);
+  useEffect(() => {
+    // navigate.replace("")
+  }, [])
 
   return (
     <div>
@@ -15,7 +21,7 @@ function DetialId(props) {
         <meta name="author" content="CHAT architects" />
         <meta
           name="description"
-          content={`${project?.description?.th} ,Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
+          content={project?.description?.th ? `${project?.description?.th}` : `Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
         />
         <meta
           itemprop="name"
@@ -42,12 +48,12 @@ function DetialId(props) {
         />
         <meta
           property="og:description"
-          content={`${project?.description?.th} ,Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
+          content={project?.description?.th ? `${project?.description?.th}` : `Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
         />
         <meta
           property="og:image"
           content={
-            project?.shareimg || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
+            project?.shareimg || project?.thumbnail || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
           }
         />
       </Head>
