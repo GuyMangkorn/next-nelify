@@ -62,7 +62,7 @@ function DetialId(props) {
 
         <meta
           name="twitter:card"
-          content={`BANGKOK BASTARDS | ${project?.title?.th}`}
+          content="summary_large_image"
         />
         <meta
           name="twitter:title"

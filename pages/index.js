@@ -24,6 +24,10 @@ export default function Home() {
         <meta property="og:type" content="article" />
         <meta property="fb:app_id" content="5564660966946485"/>
 
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
         <meta name="twitter:title" content="BANGKOK BASTARDS" />
         <meta name="twitter:description" content="Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city" />
         {/* <meta name="twitter:site" content="@yourusername" /> */}
