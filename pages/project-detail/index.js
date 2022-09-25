@@ -1,12 +1,10 @@
-import Head from 'next/head'
+import React from 'react'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head'
 
-export default function Home() {
-  const version = 1
-
+function Detail() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>BANGKOK BASTARDS</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,12 +20,13 @@ export default function Home() {
         <meta property="og:url" content="https://www.bangkokbastards.com" />
         <meta property="og:image" content="https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg" />
         <meta property="og:type" content="article" />
-        <meta property="fb:app_id" content="5564660966946485"/>
+        <meta property="fb:app_id" content="5564660966946485" />
 
+        {/* <meta name="twitter:card" content="https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg" /> */}
         <meta name="twitter:title" content="BANGKOK BASTARDS" />
         <meta name="twitter:description" content="Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city" />
         {/* <meta name="twitter:site" content="@yourusername" /> */}
-        <meta name="twitter:image" content="https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg" />
+        <meta name="twitter:image" content="http://www.yoursite.com/yourimage.jpg" />
         {/* <meta name="twitter:creator" content="@yourusername" /> */}
       </Head>
       <div>
@@ -43,3 +42,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Detail

@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 function DetialId(props) {
-  const navigate = useRouter()
   const project = props.project
-  console.log('project', project);
+  const id = props.id
+
   useEffect(() => {
-    // navigate.replace("")
+    // window.open(`https://www.bangkokbastard.com/project-detail/${id}`, '_self')
   }, [])
 
   return (
     <div>
       <Head>
         <title>BANGKOK BASTARDS {`| ${project?.title?.th}`}</title>
+        <link rel="icon" href="/favicon.ico" />
         <meta
           name="keywords"
           content="Bangkok Bastards, Bangkok Bastards, Bangkok Bastard, CHAT architects,สถาปัตยกรรมชั้นเลว,, สถาปัตยกรรมที่ไม่น่าพิสมัย,บ้านคนงานก่อสร้าง,สลัม,แผงลอยเป็นสถาปัตยกรรมชั้นต่ำ,บ้านคนงานก่อสร้าง"
@@ -24,28 +25,29 @@ function DetialId(props) {
           content={project?.description?.th ? `${project?.description?.th}` : `Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
         />
         <meta
-          itemprop="name"
+          itemProp="name"
           content="สถาปัตยกรรมสารเลว กับมุมมองที่แตกต่างของคุณฉัตรพงษ์ ชื่นฤดีมล&nbsp;แห่ง CHAT Architects"
         />
         <meta
-          itemprop="headline"
+          itemProp="headline"
           content="สถาปัตยกรรมสารเลว กับมุมมองที่แตกต่างของคุณฉัตรพงษ์ ชื่นฤดีมล&nbsp;แห่ง CHAT Architects"
         />
         <meta
-          itemprop="image"
+          itemProp="image"
           content={
-            `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
+            project?.shareimg || project?.thumbnail || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
           }
         />
-        <meta
-          property="og:url"
-          content="https://www.bangkokbastards.com"
-        />
-        <meta property="og:type" content="article" />
+
         <meta
           property="og:title"
           content={`BANGKOK BASTARDS | ${project?.title?.th}`}
         />
+        <meta
+          property="og:url"
+          content={props.id ? `https://www.bangkokbastards.com/project-detail/${id}` : "https://www.bangkokbastards.com"}
+        />
+        <meta property="og:type" content="article" />
         <meta
           property="og:description"
           content={project?.description?.th ? `${project?.description?.th}` : `Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city`}
@@ -56,7 +58,37 @@ function DetialId(props) {
             project?.shareimg || project?.thumbnail || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`
           }
         />
+        <meta property="fb:app_id" content="5564660966946485"/>
+
+        <meta
+          name="twitter:card"
+          content={`BANGKOK BASTARDS | ${project?.title?.th}`}
+        />
+        <meta
+          name="twitter:title"
+          content={`BANGKOK BASTARDS | ${project?.title?.th}`}
+        />
+        <meta
+          name="twitter:description"
+          content="Bangkok Bastards describes the research subjects of CHAT architects. From construction worker houses to forgotten shantytowns, from illegal pop-up markets to street vendor carts, from seedy massage parlors to underground sex motels, these vernacular Bastards are hybrids of questionable origins, scattered though out the city"
+        />
+        <meta
+          name="twitter:image"
+          content={project?.shareimg || project?.thumbnail || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`}
+        />
+        {/* <meta name="twitter:site" content="@yourusername" /> */}
+        {/* <meta name="twitter:creator" content="@yourusername" /> */}
       </Head>
+      <div>
+        <h1 style={{ textAlign: 'center' }}>{`BANGKOK BASTARDS | ${project?.title?.th}`}</h1>
+        <Image
+          alt={`BANGKOK BASTARDS | ${project?.title?.th}`}
+          src={project?.shareimg || project?.thumbnail || `https://bangkokbastards.s3.ap-southeast-1.amazonaws.com/1663604036572-share.jpg`}
+          layout='responsive'
+          height={9}
+          width={16}
+        />
+      </div>
     </div>
   )
 }
@@ -71,10 +103,14 @@ export async function getServerSideProps(context) {
     },
   };
   const response = await fetch(`${process.env.REACT_APP_API_URL}/project/${context.query.id}`, requestOptions)
-  const body = await response.json()
+  let body = null
+  if (response.status === 200) {
+    body = await response.json()
+  }
   return {
     props: {
-      project: body.data || {},
+      project: body?.data || {},
+      id: context.query.id
     },
   };
 }
